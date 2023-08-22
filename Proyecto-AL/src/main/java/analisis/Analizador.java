@@ -1,11 +1,11 @@
 package analisis;
+
 import java.util.ArrayList;
 
 public class Analizador {
 
     ArrayList<Token> lista_token = new ArrayList<>();
     Palabras_reservadas detector = new Palabras_reservadas();
-    java.awt.Color magenta = java.awt.Color.magenta;
 
     public Analizador(ArrayList<Token> lista_token) {
         this.lista_token = lista_token;
@@ -70,11 +70,11 @@ public class Analizador {
                                 numero_token = 100;
                                 tipo = "Palabra clave";
                                 patron = "[palabras reservadas]";
-                            } else if(detector.logicos_R(lexema)){
+                            } else if (detector.logicos_R(lexema)) {
                                 numero_token = 12;
                                 tipo = "Logicos";
                                 patron = "[and|or|not]";
-                            }else {
+                            } else {
                                 numero_token = 1;
                                 tipo = "Identificador";
                                 patron = "[a-z,A-Z][_]";
@@ -160,7 +160,7 @@ public class Analizador {
                             estado = 0;
                         }
                         break;
-                        //comentario
+                    //comentario
                     case 6:
                         lexema = lexema + lineas[i].charAt(j);
                         if (linea_s == '#' || linea_s > 96 && linea_s < 123
@@ -173,20 +173,35 @@ public class Analizador {
                             estado = 0;
                         }
                         break;
-                        // cadenas
+                    // cadenas dobles
                     case 7:
                         lexema = lexema + lineas[i].charAt(j);
                         if (linea_s == '"' || linea_s > 96 && linea_s < 123
                                 || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)
-                                ||(linea_s > 47 && linea_s < 58) && linea_s == '"') {
+                                || (linea_s > 47 && linea_s < 58) && linea_s == '"') {
                             estado = 7;
-                        }else {
+                        } else {
                             numero_token = 13;
-                            tipo = "Constantes";
-                            patron = "comillas";
+                            tipo = "Constantes comillas D";
+                            patron = "[\"][a-z,A-Z][0-9][\"]";
                             estado = 0;
                         }
                         break;
+                        // cadenas simples
+                    case 8:
+                        lexema = lexema + lineas[i].charAt(j);
+                        if (linea_s == '\'' || linea_s > 96 && linea_s < 123
+                                || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)
+                                || (linea_s > 47 && linea_s < 58) && linea_s == '\'') {
+                            estado = 8;
+                        } else {
+                            numero_token = 17;
+                            tipo = "Constantes comillas S";
+                            patron = "[\'][a-z,A-Z][0-9][\']";
+                            estado = 0;
+                        }
+                        break;
+
                     default:
                         break;
                 }
