@@ -13,7 +13,7 @@ public class Interfaz extends javax.swing.JFrame {
     File archivo;
     GestionArchivos gestion = new GestionArchivos();
     ArrayList<Token> lista_token = new ArrayList<>();
-    //ColorTable Cote = new ColorTable();
+    ColorTable Cote = new ColorTable();
 
     /**
      * Creates new form Interfaz
@@ -33,8 +33,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        text_contenido = new javax.swing.JTextArea();
         BTabrir = new javax.swing.JButton();
         BTanalizar = new javax.swing.JButton();
         BTgrafico = new javax.swing.JButton();
@@ -45,6 +43,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Acerca_de = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        text_editor = new javax.swing.JTextPane();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,10 +60,6 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        text_contenido.setColumns(20);
-        text_contenido.setRows(5);
-        jScrollPane1.setViewportView(text_contenido);
 
         BTabrir.setText("Abrir");
         BTabrir.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +115,8 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setViewportView(text_editor);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,50 +124,51 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(46, 46, 46)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(BTabrir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(BTanalizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(47, 47, 47)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(BTgrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(BTlimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(BTayuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Acerca_de, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(BTanalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BTabrir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTgrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BTlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BTayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Acerca_de))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(28, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
                         .addComponent(BTabrir)
-                        .addGap(30, 30, 30)
+                        .addGap(28, 28, 28)
                         .addComponent(BTanalizar)
-                        .addGap(31, 31, 31)
+                        .addGap(30, 30, 30)
                         .addComponent(BTgrafico)
-                        .addGap(32, 32, 32)
+                        .addGap(30, 30, 30)
                         .addComponent(BTlimpiar)
-                        .addGap(36, 36, 36)
+                        .addGap(31, 31, 31)
                         .addComponent(BTayuda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)
                         .addComponent(Acerca_de))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(9, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +185,7 @@ public class Interfaz extends javax.swing.JFrame {
             if (archivo.canRead()) {
                 if (archivo.getName().endsWith("txt")) {
                     String contenido = gestion.AbrirATexto(archivo);
-                    text_contenido.setText(contenido);
+                    text_editor.setText(contenido);
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor seleccione un archivo.txt");
                 }
@@ -197,17 +196,11 @@ public class Interfaz extends javax.swing.JFrame {
     private void BTanalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizarActionPerformed
         // TODO add your handling code here:
         Analizador analizador = new Analizador(lista_token);
-        analizador.analizar(text_contenido.getText());
+        analizador.analizar(text_editor.getText());
         
         DefaultTableModel model = (DefaultTableModel) TablaToken.getModel();
         model.setRowCount(0); // Limpia la tabla
-
-        //Este es para darle color
-        java.awt.Color green = java.awt.Color.green;
-        java.awt.Color red = java.awt.Color.red;
-        java.awt.Color black = java.awt.Color.black;
-   //     text_contenido.setForeground(green);
-        
+        Cote.colorearEditorTexto(text_editor);
         //***********************************
         for (Token token : lista_token) {
             model.addRow(new Object[]{
@@ -223,8 +216,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void BTlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTlimpiarActionPerformed
         // TODO add your handling code here:
-        //text_analisis.setText("");
-        text_contenido.setText("");
+        text_editor.setText("");
         DefaultTableModel model = (DefaultTableModel) TablaToken.getModel();
         model.setRowCount(0);
     }//GEN-LAST:event_BTlimpiarActionPerformed
@@ -293,10 +285,10 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTable TablaToken;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea text_contenido;
+    private javax.swing.JTextPane text_editor;
     // End of variables declaration//GEN-END:variables
 }
