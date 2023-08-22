@@ -47,8 +47,10 @@ public class Palabras_reservadas {
         }else if(n == '#') {
             return 6;//comentario
         }else if(n == '"'){
-            return 7;//cadenas '''
-        } else {
+            return 7;//cadenas dobles
+        } else if(n == '\''){
+            return 8;
+        }else{
             return 999;
         }
     }

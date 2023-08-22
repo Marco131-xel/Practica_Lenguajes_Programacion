@@ -1,229 +1,197 @@
 package archivo;
 
-import analisis.Palabras_reservadas;
-import analisis.Token;
-import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.text.*;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class ColorTable {
-    ArrayList<Token> lista_token = new ArrayList<>();
-    Palabras_reservadas detector = new Palabras_reservadas();
-    
+
     java.awt.Color black = java.awt.Color.black;
     java.awt.Color cyan = java.awt.Color.cyan;
     java.awt.Color magenta = java.awt.Color.magenta;
     java.awt.Color red = java.awt.Color.red;
     java.awt.Color gray = java.awt.Color.gray;
     java.awt.Color green = java.awt.Color.green;
+    java.awt.Color yellow = java.awt.Color.yellow;
 
-    public ColorTable(ArrayList<Token> lista_token) {
-        this.lista_token = lista_token;
-    }
+    private List<String> palabrasclave = Arrays.asList("as", "assert", "break", "class", "continue", "def", "del", "elif",
+            "else", "except", "False", "finally", "for", "from", "global", "if", "import", "in", "is", "lambda", "None",
+            "nonlocal", "pass", "raise", "return", "True", "try", "while", "with", "yield");
 
-    public String[] space(String texto, char separar) {
-        String linea = "";
-        int contador = 0;
+    private List<String> logicos = Arrays.asList("and", "or", "not");
+    private List<String> punto = Arrays.asList(".");
+    private List<String> barra = Arrays.asList("_");
+    private List<String> otros = Arrays.asList("(", ")", "{", "}", "[", "]", ",", ":", ";");
+    private List<String> aritmetico = Arrays.asList("+", "-", "*", "/", "**", "//", "%", "=", "==",
+            "!=", "<", ">", "<=", ">=");
 
-        for (int i = 0; i < texto.length(); i++) {
-            if (texto.charAt(i) == separar) {
-                contador++;
-            }
+    public void colorearEditorTexto(JTextPane textPane) {
+        StyledDocument doc = textPane.getStyledDocument();
+        String contenido = null;
+        try {
+            // Obtiene el texto completo del JTextPane
+            contenido = doc.getText(0, doc.getLength());
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+            return;
         }
 
-        String[] cadenas = new String[contador + 1];
-        contador = 0;
+        for (int i = 0; i < contenido.length(); i++) {
+            char c = contenido.charAt(i);
+            Color color;
 
-        for (int i = 0; i < texto.length(); i++) {
-            if (texto.charAt(i) == separar || i + 1 == texto.length()) {
-                cadenas[contador] = linea;
-                contador++;
-                linea = "";
+            if (Character.isLetter(c)) {
+                color = black; // Letras en verde
+            } else if (Character.isDigit(c)) {
+                color = red;   // Números en rojo
             } else {
-                linea = linea + texto.charAt(i);
+                color = yellow;  // los que no tienen sentido
+            }
+
+            StyleContext sc = StyleContext.getDefaultStyleContext();
+            AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, color);
+
+            doc.setCharacterAttributes(i, 1, aset, true);
+        }
+
+        for (String palabra : palabrasclave) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, magenta); // Palabras clave en morado
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
             }
         }
-        return cadenas;
-    }
+        for (String palabra : barra) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, black); // barra negro
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
+            }
+        }
 
-    public void analizar(String cadena) {
-        int estado = 0;
-        int numero_token = 0;
-        String lexema = "";
-        String patron = "";
-        String tipo = "";
-        String[] lineas = space(cadena, '\n');
+        for (String palabra : aritmetico) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, cyan); // aritmetico cyan
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
+            }
+        }
 
-        for (int i = 0; i < lineas.length; i++) {
-            for (int j = 0; j < lineas[i].length(); j++) {
-                int linea_a, linea_s = -1;
+        for (String palabra : logicos) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, cyan); // logicos cyan
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
+            }
+        }
+        for (String palabra : punto) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, red); // punto red
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
+            }
+        }
 
-                linea_a = lineas[i].codePointAt(j);
-                if (estado == 0) {
-                    estado = detector.Ntoken(linea_a);
-                }
+        for (String palabra : otros) {
+            int inicio = contenido.indexOf(palabra);
+            while (inicio >= 0) {
+                int fin = inicio + palabra.length();
+                AttributeSet aset = new SimpleAttributeSet();
+                StyleConstants.setForeground((MutableAttributeSet) aset, green); // otros green
+                doc.setCharacterAttributes(inicio, fin - inicio, aset, false);
+                inicio = contenido.indexOf(palabra, fin);
+            }
+        }
 
-                try {
-                    linea_s = lineas[i].codePointAt(j + 1);
-                } catch (Exception e) {
+        // comentario
+        String[] lineas = contenido.split("\n");
+        for (String linea : lineas) {
+            String trimmedLine = linea.trim();
+            if (trimmedLine.startsWith("#") && trimmedLine.length() > 1) {
+                int startIndex = contenido.indexOf(linea);
+                int endIndex = startIndex + linea.length();
+                boolean soloLetrasDespuesDelHashtag = true;
 
-                }
-                switch (estado) {
-                    //palabras
-                    case 1:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s > 96 && linea_s < 123
-                                || (linea_s > 64 && linea_s < 91) || linea_s == '_') {
-                            estado = 1;
-                        } else {
-                            if (detector.palabras_R(lexema)) {
-                                // ------------------------------ PALABRA CLAVE--------------------------------
-                              
-                                numero_token = 100;
-                                tipo = "Palabra clave";
-                                patron = "[palabras reservadas]";
-                            } else if(detector.logicos_R(lexema)){
-                                // ------------------------------- LOGICOS -----------------------------------
-                               
-                                numero_token = 12;
-                                tipo = "Logicos";
-                                patron = "[and|or|not]";
-                            }else {
-                                // -------------------------------- IDENTIFICADOR LETRAS --------------------------------
-                                numero_token = 1;
-                                tipo = "Identificador";
-                                patron = "[a-z,A-Z][_]";
-                            }
-                            estado = 0;
-                        }
+                for (int i = trimmedLine.indexOf("#") + 1; i < trimmedLine.length(); i++) {
+                    if (!Character.isLetterOrDigit(trimmedLine.charAt(i)) && !Character.isWhitespace(trimmedLine.charAt(i))) {
+                        soloLetrasDespuesDelHashtag = false;
                         break;
-                    //numeros
-                    case 2:
-                        lexema = lexema + lineas[i].charAt(j);
-                        linea_s = j + 1 < lineas[i].length() ? lineas[i].charAt(j + 1) : -1;
-
-                        if ((linea_s >= '0' && linea_s <= '9') || linea_s == '.') {
-                            estado = 2;
-                        } else if (linea_s == -1 || (linea_s != '.' && (linea_s < '0' || linea_s > '9'))) {
-                            if (lexema.contains(".")) {
-                                // --------------------------- NUMEROS --------------------------------
-                                numero_token = 8; // Token para números decimales
-                                tipo = "Constante Decimal";
-                                patron = "[[0-9]+([.][0-9]+)]";
-                            } else {
-                                numero_token = 2; // Token para números enteros
-                                tipo = "Constante Entero";
-                                patron = "[0-9]";
-                            }
-                            estado = 0;
-                        } else {
-                        }
-                        break;
-                    case 100:
-                        estado = -2;
-                        break;
-                    case 999:
-                        lexema = String.valueOf(lineas[i].charAt(j));
-                        numero_token = 999;
-                        tipo = "Error Lexico";
-                        patron = "";
-                        estado = 0;
-                        break;
-                    //operadores aritmeticos
-                    case 3:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s == '+' || linea_s == '-' || linea_s == '*' || linea_s == '/' || linea_s == '%') {
-                            estado = 3;
-                        } else {
-                            if (detector.aritmetico_R(lexema)) {
-                                // ------------------------------------------- OPERADORES ARITMETICOS ----------------------------------
-                                tipo = "Operadores Aritmeticos";
-                                patron = "[[+|-|*|/|**|//|%]]";
-                            } else {
-                                numero_token = 3;
-                                tipo = "Operadores Aritmeticos";
-                                patron = "[+|-|*|/|**|//|%]";
-                            }
-                            estado = 0;
-                        }
-                        break;
-                    //asignacion
-                    case 4:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s == '=') {
-                            estado = 4;
-                        } else {
-                            if (detector.comparacion_R(lexema)) {
-                                // ----------------------------------- COMPARACION ---------------------------
-                                tipo = "Comparacion";
-                                patron = "[==|=!|>|<|>=|<=]";
-                            } else {
-                                numero_token = 4;
-                                //----------------------------------- ASIGNACION ---------------------------
-                                tipo = "Asignacion";
-                                patron = "[=]";
-                            }
-                            estado = 0;
-                        }
-                        break;
-                    //otros
-                    case 5:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s == '(' || linea_s == ')' || linea_s == '{' || linea_s == '}' || linea_s == '['
-                                || linea_s == ']' || linea_s == ',' || linea_s == ':' || linea_s == ';') {
-                            estado = 5;
-                        } else {
-                            numero_token = 5;
-                            // ------------------------------------------- OTROS -------------------------------------
-                            tipo = "Otros";
-                            patron = "[()|{}|[]|.|:|;]";
-                            estado = 0;
-                        }
-                        break;
-                        //comentario
-                    case 6:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s == '#' || linea_s > 96 && linea_s < 123
-                                || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)) {
-                            estado = 6;
-                        } else {
-                            // --------------------------------------- COMENTARIO -----------------------------------
-                            numero_token = 9;
-                            tipo = "Comentario";
-                            patron = "[^# [A-Za-z]+]";
-                            estado = 0;
-                        }
-                        break;
-                        // cadenas
-                    case 7:
-                        lexema = lexema + lineas[i].charAt(j);
-                        if (linea_s == '"' || linea_s > 96 && linea_s < 123
-                                || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)
-                                ||(linea_s > 47 && linea_s < 58) && linea_s == '"') {
-                            estado = 7;
-                        }else {
-                            // ------------------------------------------ CONSTANTES COMILLAS --------------------------
-                            numero_token = 13;
-                            tipo = "Constantes";
-                            patron = "comillas";
-                            estado = 0;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                if (estado == 0) {
-                    if (!lexema.isEmpty()) {
-                        lista_token.add(new Token(lexema, numero_token, patron, i + 1, j + 1, tipo));
-                        lexema = "";
-                        tipo = "";
                     }
                 }
-                if (estado == -2) {
-                    estado = 0;
-                }
 
+                if (soloLetrasDespuesDelHashtag) {
+                    AttributeSet aset = new SimpleAttributeSet();
+                    StyleConstants.setForeground((MutableAttributeSet) aset, gray); // Establece el color gris
+                    doc.setCharacterAttributes(startIndex, endIndex - startIndex, aset, false);
+                }
             }
         }
 
+        //cadenas comillas dobles
+        int startIndex = contenido.indexOf("\"");
+        while (startIndex >= 0) {
+            int endIndex = contenido.indexOf("\"", startIndex + 1);
+            if (endIndex > startIndex) {
+                String cadena = contenido.substring(startIndex + 1, endIndex);
+
+                // Eliminar espacios al principio y al final de la cadena
+                cadena = cadena.trim();
+
+                if (esCadenaValida(cadena)) {
+                    AttributeSet aset = new SimpleAttributeSet();
+                    StyleConstants.setForeground((MutableAttributeSet) aset, red); // Cadenas entre comillas en rojo
+                    doc.setCharacterAttributes(startIndex, endIndex - startIndex + 1, aset, false);
+                }
+            }
+            startIndex = contenido.indexOf("\"", endIndex + 1);
+        }
+
+        //cadenas comillas simples
+        startIndex = contenido.indexOf("\'");
+        while (startIndex >= 0) {
+            int endIndex = contenido.indexOf("\'", startIndex + 1);
+            if (endIndex > startIndex) {
+                String cadena = contenido.substring(startIndex + 1, endIndex);
+
+                // Eliminar espacios al principio y al final de la cadena
+                cadena = cadena.trim();
+
+                if (esCadenaValida(cadena)) {
+                    AttributeSet aset = new SimpleAttributeSet();
+                    StyleConstants.setForeground((MutableAttributeSet) aset, red); // Cadenas entre comillas en rojo
+                    doc.setCharacterAttributes(startIndex, endIndex - startIndex + 1, aset, false);
+                }
+            }
+            startIndex = contenido.indexOf("\'", endIndex + 1);
+        }
+
+    }
+    // Función para verificar si una cadena contiene solo letras y números
+
+    private boolean esCadenaValida(String cadena) {
+        for (int i = 0; i < cadena.length(); i++) {
+            char c = cadena.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

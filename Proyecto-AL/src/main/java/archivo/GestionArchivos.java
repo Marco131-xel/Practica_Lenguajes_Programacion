@@ -1,6 +1,7 @@
 package archivo;
 
 import java.io.*;
+import javax.swing.table.DefaultTableModel;
 
 public class GestionArchivos {
     FileInputStream entrada;
