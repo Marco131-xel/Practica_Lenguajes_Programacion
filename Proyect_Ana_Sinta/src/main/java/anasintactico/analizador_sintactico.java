@@ -380,7 +380,46 @@ public class analizador_sintactico {
                             indiceToken += 2; // Avanzamos el índice en función de la expresión completa
                         }
                     }
+                    // Funciones con def 5
+                    if (lexema.equals("def") && indiceToken + 7 < listaTokens.size()) {
+                        Token iden5 = listaTokens.get(indiceToken + 1);
+                        Token pari5 = listaTokens.get(indiceToken + 2);
+                        Token cont5 = listaTokens.get(indiceToken + 3);
+                        Token coma5 = listaTokens.get(indiceToken + 4);
+                        Token conte5 = listaTokens.get(indiceToken + 5);
+                        Token parf5 = listaTokens.get(indiceToken + 6);
+                        Token dpunto5 = listaTokens.get(indiceToken + 7);
 
+                        String tiden5 = iden5.getTipo();
+                        String liden5 = iden5.getLexema();
+                        String tpari5 = pari5.getTipo();
+                        String lpari5 = pari5.getLexema();
+                        String tcont5 = cont5.getTipo();
+                        String lcont5 = cont5.getLexema();
+                        String tcoma5 = coma5.getTipo();
+                        String lcoma5 = coma5.getLexema();
+                        String tconte5 = conte5.getTipo();
+                        String lconte5 = conte5.getLexema();
+                        String tparf5 = parf5.getTipo();
+                        String lparf5 = parf5.getLexema();
+                        String tdpunto5 = dpunto5.getTipo();
+                        String ldpunto5 = dpunto5.getLexema();
+
+                        if (tiden5.equals("Identificador")
+                                && (tpari5.equals("Otros") && lpari5.equals("("))
+                                && (tcont5.equals("Constante Entero") || tcont5.equals("Identificador"))
+                                && (tcoma5.equals("Otros") && lcoma5.equals(","))
+                                && (tconte5.equals("Constante Entero") || tconte5.equals("Identificador"))
+                                && (tparf5.equals("Otros") && lparf5.equals(")"))
+                                && (tdpunto5.equals("Otros") && ldpunto5.equals(":"))) {
+                            // Si se cumple el patrón, lo etiquetamos funciones 
+                            String ldef5 = lexema + " " + liden5 + " " + lpari5 + " " + lcont5 + " " + lcoma5 + " " + lconte5 + " " + lparf5 + " " + ldpunto5;
+                            Simbolos def5 = new Simbolos("Funciones 2", "Ninguno", ldef5, token.getFila(), token.getColumna());
+                            listaSimbolos.add(def5);
+                            indiceToken += 7; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+                    // Funciones con def
                     if (lexema.equals("def") && indiceToken + 5 < listaTokens.size()) {
                         Token iden4 = listaTokens.get(indiceToken + 1);
                         Token pari4 = listaTokens.get(indiceToken + 2);
@@ -409,6 +448,79 @@ public class analizador_sintactico {
                             Simbolos de1 = new Simbolos("Funciones", "Ninguno", def1, token.getFila(), token.getColumna());
                             listaSimbolos.add(de1);
                             indiceToken += 5; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // Return 
+                    if (lexema.equals("return") && indiceToken + 4 < listaTokens.size()) {
+                        Token iden8 = listaTokens.get(indiceToken + 1);
+                        Token pari8 = listaTokens.get(indiceToken + 2);
+                        Token ident8 = listaTokens.get(indiceToken + 3);
+                        Token parf8 = listaTokens.get(indiceToken + 4);
+
+                        String tiden8 = iden8.getTipo();
+                        String liden8 = iden8.getLexema();
+                        String tpari8 = pari8.getTipo();
+                        String lpari8 = pari8.getLexema();
+                        String tident8 = ident8.getTipo();
+                        String lident8 = ident8.getLexema();
+                        String tparf8 = parf8.getTipo();
+                        String lparf8 = parf8.getLexema();
+
+                        if (tiden8.equals("Identificador")
+                                && (tpari8.equals("Otros") && lpari8.equals("("))
+                                && (tident8.equals("Identificador"))
+                                && (tparf8.equals("Otros") && lparf8.equals(")"))) {
+                            // Si se cumple el patrón, lo etiquetamos funciones con identificadores 
+                            String lretu3 = lexema + " " + liden8 + " " + lpari8 + " " + lident8 + " " + lparf8;
+                            Simbolos retu3 = new Simbolos("Return 3", "Ninguno", lretu3, token.getFila(), token.getColumna());
+                            listaSimbolos.add(retu3);
+                            indiceToken += 4; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // return 2
+                    if (lexema.equals("return") && indiceToken + 3 < listaTokens.size()) {
+                        Token cont6 = listaTokens.get(indiceToken + 1);
+                        Token op6 = listaTokens.get(indiceToken + 2);
+                        Token conte6 = listaTokens.get(indiceToken + 3);
+
+                        String tcont6 = cont6.getTipo();
+                        String lcont6 = cont6.getLexema();
+                        String top6 = op6.getTipo();
+                        String lop6 = op6.getLexema();
+                        String tconte6 = conte6.getTipo();
+                        String lconte6 = conte6.getLexema();
+
+                        if ((tcont6.equals("Constante Entero") || tcont6.equals("Identificador"))
+                                && top6.equals("Operadores Aritmeticos")
+                                && (tconte6.equals("Constante Entero") || tconte6.equals("Identificador"))) {
+
+                            // Si se cumple el patrón, lo etiquetamos funciones operadas
+                            String lretu2 = lexema + " " + lcont6 + " " + lop6 + " " + lconte6;
+                            Simbolos retu2 = new Simbolos("Return 2", "Ninguno", lretu2, token.getFila(), token.getColumna());
+                            listaSimbolos.add(retu2);
+                            indiceToken += 3; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // return 3
+                    if (lexema.equals("return") && indiceToken + 1 < listaTokens.size()) {
+                        Token valor = listaTokens.get(indiceToken + 1);
+
+                        String tvalor = valor.getTipo();
+                        String lvalor = valor.getLexema();
+
+                        if (tvalor.equals("Identificador")
+                                || (tvalor.equals("Constante Entero"))
+                                || (tvalor.equals("Constante Decimal"))
+                                || (tvalor.equals("Constantes comillas D"))
+                                || (tvalor.equals("Constantes comillas S"))) {
+                            // Si se cumple el patrón, lo etiquetamos return
+                            String lreturn = lexema + " " + lvalor;
+                            Simbolos retu = new Simbolos("Return", "Ninguno", lreturn, token.getFila(), token.getColumna());
+                            listaSimbolos.add(retu);
+                            indiceToken += 1; // Avanzamos el índice en función de la expresión completa
                         }
                     }
                     break;
