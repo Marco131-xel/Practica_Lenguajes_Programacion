@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98b64d2d-b7bb-4a00-9ccd-4489126f7602" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/target/classes/analisis/Analizador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/analisis/Analizador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/analisis/Palabras_reservadas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/analisis/Palabras_reservadas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/archivo/ColorTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/archivo/ColorTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/archivo/GestionArchivos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/archivo/GestionArchivos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Interfaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Interfaz.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2UKNnZ7HE88xSyVVZTpYS98bOXu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Documentos/Marco/Progra/Proyectos/Lenguajes Progra/Practica_Lenguajes_Programacion/Proyecto-AL&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Interfaz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Interfaz" />
+      <module name="Proyecto-AL" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Interfaz" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98b64d2d-b7bb-4a00-9ccd-4489126f7602" name="Changes" comment="" />
+      <created>1692684479952</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692684479952</updated>
+      <workItem from="1692684480938" duration="42000" />
+      <workItem from="1692684707215" duration="81000" />
+      <workItem from="1693354441481" duration="969000" />
+      <workItem from="1693435420303" duration="359000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
