@@ -1,6 +1,8 @@
 package analisis;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class analizador_lexico {
 
@@ -163,27 +165,41 @@ public class analizador_lexico {
                         // CADENAS DOBLES
                         case 7:
                             lexema = lexema + lineas[i].charAt(j);
-                            if (linea_s == '"' || linea_s > 96 && linea_s < 123
-                                    || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)
-                                    || (linea_s > 47 && linea_s < 58) && linea_s == '"') {
+                            linea_s = j + 1 < lineas[i].length() ? lineas[i].charAt(j + 1) : -1;
+
+                            if (linea_s == '"') {
+                                // Empieza una cadena entre comillas
                                 estado = 7;
-                            } else {
+                            } else if (linea_s == -1) {
+                                // Fin de línea, y la cadena entre comillas no se ha cerrado
+                                estado = 999;  // Error léxico
+                            } else if (lexema.matches("\"[\\w\\s]+\"")) {
+                                // Cadena entre comillas encontrada
                                 tipo = "Constantes comillas D";
                                 patron = "[\"][a-z,A-Z][0-9][\"]";
                                 estado = 0;
+                            } else {
+                                estado = 7;
                             }
                             break;
                         // CADENAS SIMPLES
                         case 8:
                             lexema = lexema + lineas[i].charAt(j);
-                            if (linea_s == '\'' || linea_s > 96 && linea_s < 123
-                                    || (linea_s > 64 && linea_s < 91) || (linea_s == 32 || linea_s == 13 || linea_s == 9)
-                                    || (linea_s > 47 && linea_s < 58) && linea_s == '\'') {
+                            linea_s = j + 1 < lineas[i].length() ? lineas[i].charAt(j + 1) : -1;
+
+                            if (linea_s == '\'') {
+                                // Empieza una cadena entre comillas simples
                                 estado = 8;
-                            } else {
+                            } else if (linea_s == -1) {
+                                // Fin de línea, y la cadena entre comillas simples no se ha cerrado
+                                estado = 999;  // Error léxico
+                            } else if (lexema.matches("\'[\\w\\s]+\'")) {
+                                // Cadena entre comillas simples encontrada
                                 tipo = "Constantes comillas S";
                                 patron = "[\'][a-z,A-Z][0-9][\']";
                                 estado = 0;
+                            } else {
+                                estado = 8;
                             }
                             break;
                         // OTROS PARENTESIS

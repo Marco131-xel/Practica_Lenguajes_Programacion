@@ -7,6 +7,8 @@ public class analizador_sintactico {
 
     private ArrayList<Simbolos> listaSimbolos;
     private ArrayList<Bloques> cajaBloque;
+    private ArrayList<Token> listaTokens;
+    private int indiceToken;
 
     public analizador_sintactico(ArrayList<Token> listaTokens) {
         this.listaSimbolos = new ArrayList<>();
@@ -23,9 +25,6 @@ public class analizador_sintactico {
         return cajaBloque;
     }
 
-    private ArrayList<Token> listaTokens;
-    private int indiceToken;
-
     public void analizar() {
         while (indiceToken < listaTokens.size()) {
             Token token = listaTokens.get(indiceToken);
@@ -41,8 +40,134 @@ public class analizador_sintactico {
                     break;
 
                 case "Identificador":
-                    // ARREGLO segundo 
 
+                    // Operadores tenarios resultado = "Hola" if 10 == 10 else "Mundo"
+                    if (indiceToken + 8 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token comil = listaTokens.get(indiceToken + 2);
+                        Token pacla = listaTokens.get(indiceToken + 3);
+                        Token nume1 = listaTokens.get(indiceToken + 4);
+                        Token compa = listaTokens.get(indiceToken + 5);
+                        Token nume2 = listaTokens.get(indiceToken + 6);
+                        Token pacla2 = listaTokens.get(indiceToken + 7);
+                        Token comil2 = listaTokens.get(indiceToken + 8);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tcomil = comil.getTipo();
+                        String lcomil = comil.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tcompa = compa.getTipo();
+                        String lcompa = compa.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+                        String tpacla2 = pacla2.getTipo();
+                        String lpacla2 = pacla2.getLexema();
+                        String tcomil2 = comil2.getTipo();
+                        String lcomil2 = comil2.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tcomil.equals("Constantes comillas D") || tcomil.equals("Constantes comillas S"))
+                                && (tpacla.equals("Palabra clave"))
+                                && (tnume1.equals("Constante Entero"))
+                                && (tcompa.equals("Comparacion"))
+                                && (tnume2.equals("Constante Entero"))
+                                && (tpacla2.equals("Palabra clave"))
+                                && (tcomil2.equals("Constantes comillas D") || tcomil2.equals("Constantes comillas S"))) {
+                            String ident8 = lexema + " " + lasig + " " + lcomil + " " + lpacla + " " + lnume1 + " " + lcompa + " " + lnume2 + " " + lpacla2 + " " + lcomil2;
+                            Simbolos sident8 = new Simbolos("Declaracion de variab 4", "Ninguno", ident8, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident8);
+                            indiceToken += 8;
+                        }
+
+                    }
+                    // Declaracion de variables resultado = 10 == 10 and 10 != 10 
+                    if (indiceToken + 8 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token nume1 = listaTokens.get(indiceToken + 2);
+                        Token compa1 = listaTokens.get(indiceToken + 3);
+                        Token nume2 = listaTokens.get(indiceToken + 4);
+                        Token logi = listaTokens.get(indiceToken + 5);
+                        Token nume3 = listaTokens.get(indiceToken + 6);
+                        Token compa2 = listaTokens.get(indiceToken + 7);
+                        Token nume4 = listaTokens.get(indiceToken + 8);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tcompa1 = compa1.getTipo();
+                        String lcompa1 = compa1.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+                        String tlogi = logi.getTipo();
+                        String llogi = logi.getLexema();
+                        String tnume3 = nume3.getTipo();
+                        String lnume3 = nume3.getLexema();
+                        String tcompa2 = compa2.getTipo();
+                        String lcompa2 = compa2.getLexema();
+                        String tnume4 = nume4.getTipo();
+                        String lnume4 = nume4.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tnume1.equals("Constante Entero"))
+                                && (tcompa1.equals("Comparacion"))
+                                && (tnume2.equals("Constante Entero"))
+                                && (tlogi.equals("Logicos"))
+                                && (tnume3.equals("Constante Entero"))
+                                && (tcompa2.equals("Comparacion"))
+                                && (tnume4.equals("Constante Entero"))) {
+                            String ident3 = lexema + " " + lasig + " " + lnume1 + " " + lcompa1 + " " + lnume2 + " " + llogi + " " + lnume3 + " " + lcompa2 + " " + lnume4;
+                            Simbolos sident3 = new Simbolos("Declaracion de variab 4", "Ninguno", ident3, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident3);
+                            indiceToken += 8;
+                        }
+
+                    }
+
+                    // Declara arreglos resultado = suma(3, 5)
+                    if (indiceToken + 7 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token ident = listaTokens.get(indiceToken + 2);
+                        Token pcli = listaTokens.get(indiceToken + 3);
+                        Token nume1 = listaTokens.get(indiceToken + 4);
+                        Token comas = listaTokens.get(indiceToken + 5);
+                        Token nume2 = listaTokens.get(indiceToken + 6);
+                        Token pclf = listaTokens.get(indiceToken + 7);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tcomas = comas.getTipo();
+                        String lcomas = comas.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tident.equals("Identificador"))
+                                && (tpcli.equals("Otros") && lpcli.equals("("))
+                                && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
+                                && (tcomas.equals("Otros") && lcomas.equals(","))
+                                && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))
+                                && (tpclf.equals("Otros") && lpclf.equals(")"))) {
+                            String ident9 = lexema + " " + lasig + " " + lident + " " + lpcli + " " + lnume1 + " " + lcomas + " " + lnume2 + " " + lpclf;
+                            Simbolos sident9 = new Simbolos("Declaracion de variab 3", "Ninguno", ident9, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident9);
+                            indiceToken += 7;
+                        }
+
+                    }
+                    // ARREGLO segundo resta = (4,5) ++
                     if (indiceToken + 3 < listaTokens.size()) {
                         Token asi3 = listaTokens.get(indiceToken + 1);
                         Token pori = listaTokens.get(indiceToken + 2);
@@ -101,7 +226,42 @@ public class analizador_sintactico {
                             }
                         }
                     }
-                    //OPERADORES DE ENTRADA Y SALIDA
+                    // Declaracion de variables diccionario = {"nombre": "Adrian"}
+                    if (indiceToken + 6 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token pcli = listaTokens.get(indiceToken + 2);
+                        Token comil = listaTokens.get(indiceToken + 3);
+                        Token dpunto = listaTokens.get(indiceToken + 4);
+                        Token comil2 = listaTokens.get(indiceToken + 5);
+                        Token pclf = listaTokens.get(indiceToken + 6);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tcomil = comil.getTipo();
+                        String lcomil = comil.getLexema();
+                        String tdpunto = dpunto.getTipo();
+                        String ldpunto = dpunto.getLexema();
+                        String tcomil2 = comil2.getTipo();
+                        String lcomil2 = comil2.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tpcli.equals("Otros") && (lpcli.equals("(") || lpcli.equals("[") || lpcli.equals("{")))
+                                && (tcomil.equals("Constantes comillas D") || tcomil.equals("Constantes comillas S"))
+                                && (tdpunto.equals("Otros") && ldpunto.equals(":"))
+                                && (tcomil2.equals("Constantes comillas D") || tcomil2.equals("Constantes comillas S"))
+                                && (tpclf.equals("Otros") && (lpclf.equals(")")) || lpclf.equals("]") || lpclf.equals("}"))) {
+                            String ident2 = lexema + " " + lasig + " " + lpcli + " " + lcomil + " " + ldpunto + " " + lcomil2 + " " + lpclf;
+                            Simbolos sident2 = new Simbolos("Declaracion de variab 3", "Ninguno", ident2, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident2);
+                            indiceToken += 6;
+                        }
+
+                    }
+                    //OPERADORES DE ENTRADA Y SALIDA print("hola" + "mundo")
                     if (indiceToken + 5 < listaTokens.size()) {
                         Token pari2 = listaTokens.get(indiceToken + 1);
                         Token comi2 = listaTokens.get(indiceToken + 2);
@@ -132,7 +292,137 @@ public class analizador_sintactico {
                             indiceToken += 5; // Avanzamos el índice en función de la expresión completa
                         }
                     }
-                    // operadores de entrada y salida
+                    // Declaracion de variables resultado = 10 is not 10 
+                    if (indiceToken + 5 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token nume1 = listaTokens.get(indiceToken + 2);
+                        Token pacla = listaTokens.get(indiceToken + 3);
+                        Token logi = listaTokens.get(indiceToken + 4);
+                        Token nume2 = listaTokens.get(indiceToken + 5);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tlogi = logi.getTipo();
+                        String llogi = logi.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
+                                && (tpacla.equals("Palabra clave"))
+                                && (tlogi.equals("Logicos"))
+                                && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))) {
+                            String ident5 = lexema + " " + lasig + " " + lnume1 + " " + lpacla + " " + llogi + " " + lnume2;
+                            Simbolos sident5 = new Simbolos("Declaracion de variab 3", "Ninguno", ident5, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident5);
+                            indiceToken += 5;
+                        }
+
+                    }
+                    //Declaracion de variables resultado = 10 is 10
+                    if (indiceToken + 4 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token nume1 = listaTokens.get(indiceToken + 2);
+                        Token pacla = listaTokens.get(indiceToken + 3);
+                        Token nume2 = listaTokens.get(indiceToken + 4);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
+                                && (tpacla.equals("Palabra clave") && lpacla.equals("is"))
+                                && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))) {
+                            String ident4 = lexema + " " + lasig + " " + lnume1 + " " + lpacla + " " + lnume2;
+                            Simbolos sident4 = new Simbolos("Declaracion de variab 3", "Ninguno", ident4, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident4);
+                            indiceToken += 4;
+                        }
+                    }
+
+                    // Declaracion de variables print(sumar(10, 10))
+                    if (indiceToken + 7 < listaTokens.size()) {
+                        Token pcli = listaTokens.get(indiceToken + 1);
+                        Token ident = listaTokens.get(indiceToken + 2);
+                        Token pcli2 = listaTokens.get(indiceToken + 3);
+                        Token nume1 = listaTokens.get(indiceToken + 4);
+                        Token comas = listaTokens.get(indiceToken + 5);
+                        Token nume2 = listaTokens.get(indiceToken + 6);
+                        Token pclf = listaTokens.get(indiceToken + 7);
+
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpcli2 = pcli2.getTipo();
+                        String lpcli2 = pcli2.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tcomas = comas.getTipo();
+                        String lcomas = comas.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+
+                        if ((tpcli.equals("Otros") && lpcli.equals("("))
+                                && (tident.equals("Identificador"))
+                                && (tpcli2.equals("Otros") && lpcli2.equals("("))
+                                && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
+                                && (tcomas.equals("Otros") && lcomas.equals(","))
+                                && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))
+                                && (tpclf.equals("Otros") && lpclf.equals("))"))) {
+                            String ident7 = lexema + " " + lpcli + " " + lident + " " + lpcli2 + " " + lnume1 + " " + lcomas + " " + lnume2 + " " + lpclf;
+                            Simbolos sident7 = new Simbolos("Declaracion de variab 3", "Ninguno", ident7, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident7);
+                            indiceToken += 7;
+                        }
+
+                    }
+
+                    // Declaracion de variables print(factorial(10))
+                    if (indiceToken + 5 < listaTokens.size()) {
+                        Token pcli = listaTokens.get(indiceToken + 1);
+                        Token ident = listaTokens.get(indiceToken + 2);
+                        Token pcli2 = listaTokens.get(indiceToken + 3);
+                        Token nume1 = listaTokens.get(indiceToken + 4);
+                        Token pclf = listaTokens.get(indiceToken + 5);
+
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpcli2 = pcli2.getTipo();
+                        String lpcli2 = pcli2.getLexema();
+                        String tnume1 = nume1.getTipo();
+                        String lnume1 = nume1.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+
+                        if ((tpcli.equals("Otros") && lpcli.equals("("))
+                                && (tident.equals("Identificador"))
+                                && (tpcli2.equals("Otros") && lpcli2.equals("("))
+                                && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
+                                && (tpclf.equals("Otros") && lpclf.equals("))"))) {
+                            String ident6 = lexema + " " + lpcli + " " + lident + " " + lpcli2 + " " + lnume1 + " " + lpclf;
+                            Simbolos sident6 = new Simbolos("Declaracion de variab 3", "Ninguno", ident6, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident6);
+                            indiceToken += 5;
+                        }
+
+                    }
+
+                    // operadores de entrada y salida prin("hola")
                     if (indiceToken + 3 < listaTokens.size()) {
                         Token pari = listaTokens.get(indiceToken + 1);
                         Token comi = listaTokens.get(indiceToken + 2);
@@ -157,7 +447,7 @@ public class analizador_sintactico {
                         }
                     }
 
-                    //DECLARACIONES DE VARIABLES
+                    //DECLARACIONES DE VARIABLES con asignacion num += 10
                     if (indiceToken + 3 < listaTokens.size()) {
                         Token ope = listaTokens.get(indiceToken + 1);
                         Token asig = listaTokens.get(indiceToken + 2);
@@ -171,7 +461,8 @@ public class analizador_sintactico {
                         String lnum = num.getLexema();
 
                         if (tope.equals("Operadores Aritmeticos") && tasig.equals("Asignacion")
-                                && tnum.equals("Constante Entero")) {
+                                && (tnum.equals("Constante Entero")
+                                || tnum.equals("Identificador"))) {
 
                             String todo3 = lexema + " " + lope + " " + lasig + " " + lnum;
 
@@ -181,6 +472,7 @@ public class analizador_sintactico {
                         }
                     }
 
+                    // Expresiones con operadores suma = 5 + 5                    
                     if (indiceToken + 4 < listaTokens.size()) {
                         Token eden1 = listaTokens.get(indiceToken + 1);
                         Token eden2 = listaTokens.get(indiceToken + 2);
@@ -195,10 +487,11 @@ public class analizador_sintactico {
                         String teden4 = eden4.getTipo();
                         String leden4 = eden4.getLexema();
 
-                        if (teden1.equals("Asignacion") && teden2.equals("Constante Entero")
+                        if (teden1.equals("Asignacion") 
+                                && (teden2.equals("Constante Entero") || teden2.equals("Identificador"))
                                 && (teden3.equals("Operadores Aritmeticos")
                                 || teden3.equals("Comparacion"))
-                                && teden4.equals("Constante Entero")) {
+                                && (teden4.equals("Constante Entero") || teden4.equals("Identificador"))) {
 
                             String todo2 = lexema + " " + leden1 + " " + leden2 + " " + leden3 + " " + leden4;
 
@@ -208,7 +501,29 @@ public class analizador_sintactico {
                         }
                     }
 
-                    // Expresiones
+                    // Expresiones dic = ()
+                    if (indiceToken + 2 < listaTokens.size()) {
+                        Token asig = listaTokens.get(indiceToken + 1);
+                        Token pcli = listaTokens.get(indiceToken + 2);
+
+                        String tasig = asig.getTipo();
+                        String lasig = asig.getLexema();
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+
+                        if (tasig.equals("Asignacion")
+                                && tpcli.equals("Otros")
+                                && (lpcli.equals("()")
+                                || lpcli.equals("[]")
+                                || lpcli.equals("{}"))) {
+                            String ident1 = lexema + " " + lasig + " " + lpcli;
+                            Simbolos sident1 = new Simbolos("Declaracion de variab 3", "Ninguno", ident1, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sident1);
+                            indiceToken += 2;
+                        }
+                    }
+
+                    // Expresiones  hola = 45
                     if (indiceToken + 2 < listaTokens.size()) {
                         Token idenasi = listaTokens.get(indiceToken + 1);
                         Token idenasi2 = listaTokens.get(indiceToken + 2);
@@ -247,6 +562,7 @@ public class analizador_sintactico {
                     break;
 
                 case "Palabra clave":
+                    // condicionales if 3 + 3:
                     if (lexema.equals("if") && indiceToken + 4 < listaTokens.size()) {
                         Token constEnteroToken = listaTokens.get(indiceToken + 1);
                         Token operadorToken = listaTokens.get(indiceToken + 2);
@@ -274,6 +590,7 @@ public class analizador_sintactico {
                         }
                     }
 
+                    // Condicionales elif 5 - 8:
                     if (lexema.equals("elif") && indiceToken + 4 < listaTokens.size()) {
                         Token conetoken = listaTokens.get(indiceToken + 1);
                         Token opetoken = listaTokens.get(indiceToken + 2);
@@ -301,6 +618,7 @@ public class analizador_sintactico {
                         }
                     }
 
+                    // condicionales else:
                     if (lexema.equals("else") && indiceToken + 1 < listaTokens.size()) {
                         Token eldpunto = listaTokens.get(indiceToken + 1);
 
@@ -316,6 +634,7 @@ public class analizador_sintactico {
                         }
                     }
 
+                    // Ciclos while True:
                     if ((lexema.equals("while") || lexema.equals("if")) && indiceToken + 2 < listaTokens.size()) {
                         Token palabraClaveToken = listaTokens.get(indiceToken + 1);
                         Token dpuntoToken = listaTokens.get(indiceToken + 2);
@@ -334,7 +653,7 @@ public class analizador_sintactico {
                             indiceToken += 2; // Avanzamos el índice en función de la expresión completa
                         }
                     }
-                    //bluces wdpu
+                    // Ciclos bluces wdpu while 4 / 9:
                     if (lexema.equals("while") && indiceToken + 4 < listaTokens.size()) {
                         Token num1 = listaTokens.get(indiceToken + 1);
                         Token cope = listaTokens.get(indiceToken + 2);
@@ -362,6 +681,7 @@ public class analizador_sintactico {
                         }
                     }
 
+                    // Condicionales if contenido:
                     if (lexema.equals("if") && indiceToken + 2 < listaTokens.size()) {
                         Token identi = listaTokens.get(indiceToken + 1);
                         Token idedpunto = listaTokens.get(indiceToken + 2);
@@ -380,7 +700,7 @@ public class analizador_sintactico {
                             indiceToken += 2; // Avanzamos el índice en función de la expresión completa
                         }
                     }
-                    // Funciones con def 5
+                    // Funciones def sigue(3,9):
                     if (lexema.equals("def") && indiceToken + 7 < listaTokens.size()) {
                         Token iden5 = listaTokens.get(indiceToken + 1);
                         Token pari5 = listaTokens.get(indiceToken + 2);
@@ -419,7 +739,7 @@ public class analizador_sintactico {
                             indiceToken += 7; // Avanzamos el índice en función de la expresión completa
                         }
                     }
-                    // Funciones con def
+                    // Funciones def mundo(k):
                     if (lexema.equals("def") && indiceToken + 5 < listaTokens.size()) {
                         Token iden4 = listaTokens.get(indiceToken + 1);
                         Token pari4 = listaTokens.get(indiceToken + 2);
@@ -451,7 +771,7 @@ public class analizador_sintactico {
                         }
                     }
 
-                    // Return 
+                    // Return return len(texto)
                     if (lexema.equals("return") && indiceToken + 4 < listaTokens.size()) {
                         Token iden8 = listaTokens.get(indiceToken + 1);
                         Token pari8 = listaTokens.get(indiceToken + 2);
@@ -479,7 +799,7 @@ public class analizador_sintactico {
                         }
                     }
 
-                    // return 2
+                    // Return return a-b
                     if (lexema.equals("return") && indiceToken + 3 < listaTokens.size()) {
                         Token cont6 = listaTokens.get(indiceToken + 1);
                         Token op6 = listaTokens.get(indiceToken + 2);
@@ -504,7 +824,7 @@ public class analizador_sintactico {
                         }
                     }
 
-                    // return 3
+                    // Return return "hola"
                     if (lexema.equals("return") && indiceToken + 1 < listaTokens.size()) {
                         Token valor = listaTokens.get(indiceToken + 1);
 
