@@ -487,7 +487,7 @@ public class analizador_sintactico {
                         String teden4 = eden4.getTipo();
                         String leden4 = eden4.getLexema();
 
-                        if (teden1.equals("Asignacion") 
+                        if (teden1.equals("Asignacion")
                                 && (teden2.equals("Constante Entero") || teden2.equals("Identificador"))
                                 && (teden3.equals("Operadores Aritmeticos")
                                 || teden3.equals("Comparacion"))
@@ -562,6 +562,123 @@ public class analizador_sintactico {
                     break;
 
                 case "Palabra clave":
+                    // Ciclos For for i in range(b, a):
+                    if (lexema.equals("for") && indiceToken + 9 < listaTokens.size()) {
+                        Token ident = listaTokens.get(indiceToken + 1);
+                        Token pacla = listaTokens.get(indiceToken + 2);
+                        Token ident2 = listaTokens.get(indiceToken + 3);
+                        Token pcli = listaTokens.get(indiceToken + 4);
+                        Token nume = listaTokens.get(indiceToken + 5);
+                        Token comas = listaTokens.get(indiceToken + 6);
+                        Token nume2 = listaTokens.get(indiceToken + 7);
+                        Token pclf = listaTokens.get(indiceToken + 8);
+                        Token dpunto = listaTokens.get(indiceToken + 9);
+
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tident2 = ident2.getTipo();
+                        String lident2 = ident2.getLexema();
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tnume = nume.getTipo();
+                        String lnume = nume.getLexema();
+                        String tcomas = comas.getTipo();
+                        String lcomas = comas.getLexema();
+                        String tnume2 = nume2.getTipo();
+                        String lnume2 = nume2.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+                        String tdpunto = dpunto.getTipo();
+                        String ldpunto = dpunto.getLexema();
+
+                        if ((tident.equals("Identificador"))
+                                && (tpacla.equals("Palabra clave") && lpacla.equals("in"))
+                                && (tident2.equals("Identificador"))
+                                && (tpcli.equals("Otros") && lpcli.equals("("))
+                                && (tnume.equals("Constante Entero") || tnume.equals("Identificador"))
+                                && (tcomas.equals("Otros") && lcomas.equals(","))
+                                && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))
+                                && (tpclf.equals("Otros") && lpclf.equals(")"))
+                                && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
+                            String lfor3 = lexema + " " + lident + " " + lpacla + " " + lident2 + " "
+                                    + lpcli + " " + lnume + " " + lcomas + " " + lnume2 + " " + lpclf + " " + ldpunto;
+                            Simbolos sfor3 = new Simbolos("Ciclo for", "Ninguno", lfor3, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sfor3);
+                            indiceToken += 9;
+                        }
+
+                    }
+
+                    // Ciclos for i in range(5):
+                    if (lexema.equals("for") && indiceToken + 7 < listaTokens.size()) {
+                        Token ident = listaTokens.get(indiceToken + 1);
+                        Token pacla = listaTokens.get(indiceToken + 2);
+                        Token ident2 = listaTokens.get(indiceToken + 3);
+                        Token pcli = listaTokens.get(indiceToken + 4);
+                        Token nume = listaTokens.get(indiceToken + 5);
+                        Token pclf = listaTokens.get(indiceToken + 6);
+                        Token dpunto = listaTokens.get(indiceToken + 7);
+
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tident2 = ident2.getTipo();
+                        String lident2 = ident2.getLexema();
+                        String tpcli = pcli.getTipo();
+                        String lpcli = pcli.getLexema();
+                        String tnume = nume.getTipo();
+                        String lnume = nume.getLexema();
+                        String tpclf = pclf.getTipo();
+                        String lpclf = pclf.getLexema();
+                        String tdpunto = dpunto.getTipo();
+                        String ldpunto = dpunto.getLexema();
+
+                        if ((tident.equals("Identificador"))
+                                && (tpacla.equals("Palabra clave") && lpacla.equals("in"))
+                                && (tident2.equals("Identificador"))
+                                && (tpcli.equals("Otros") && lpcli.equals("("))
+                                && (tnume.equals("Constante Entero") || tnume.equals("Identificador"))
+                                && (tpclf.equals("Otros") && lpclf.equals(")"))
+                                && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
+                            String lfor2 = lexema + " " + lident + " " + lpacla + " " + lident2 + " " + lpcli + " " + lnume + " " + lpclf + " " + ldpunto;
+                            Simbolos sfor2 = new Simbolos("Ciclo for", "Ninguno", lfor2, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sfor2);
+                            indiceToken += 7;
+                        }
+
+                    }
+
+                    // Ciclos For for i in arreglo:
+                    if (lexema.equals("for") && indiceToken + 4 < listaTokens.size()) {
+                        Token ident = listaTokens.get(indiceToken + 1);
+                        Token pacla = listaTokens.get(indiceToken + 2);
+                        Token ident2 = listaTokens.get(indiceToken + 3);
+                        Token dpunto = listaTokens.get(indiceToken + 4);
+
+                        String tident = ident.getTipo();
+                        String lident = ident.getLexema();
+                        String tpacla = pacla.getTipo();
+                        String lpacla = pacla.getLexema();
+                        String tident2 = ident2.getTipo();
+                        String lident2 = ident2.getLexema();
+                        String tdpunto = dpunto.getTipo();
+                        String ldpunto = dpunto.getLexema();
+
+                        if ((tident.equals("Identificador"))
+                                && (tpacla.equals("Palabra clave") && lpacla.equals("in"))
+                                && (tident2.equals("Identificador"))
+                                && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
+                            String lfor = lexema + " " + lident + " " + lpacla + " " + lident2 + " " + ldpunto;
+                            Simbolos sfor = new Simbolos("Ciclo for", "Ninguno", lfor, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sfor);
+                            indiceToken += 4;
+                        }
+
+                    }
+
                     // condicionales if 3 + 3:
                     if (lexema.equals("if") && indiceToken + 4 < listaTokens.size()) {
                         Token constEnteroToken = listaTokens.get(indiceToken + 1);
@@ -842,6 +959,13 @@ public class analizador_sintactico {
                             listaSimbolos.add(retu);
                             indiceToken += 1; // Avanzamos el índice en función de la expresión completa
                         }
+                    }
+
+                    // Break
+                    if (lexema.equals("break")) {
+                        String lbreak = lexema;
+                        Simbolos sbreak = new Simbolos("break", "Ninguno", lbreak, token.getFila(), token.getColumna());
+                        listaSimbolos.add(sbreak);
                     }
                     break;
 
