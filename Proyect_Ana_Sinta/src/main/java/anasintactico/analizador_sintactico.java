@@ -120,7 +120,7 @@ public class analizador_sintactico {
                                 && (tcompa2.equals("Comparacion"))
                                 && (tnume4.equals("Constante Entero"))) {
                             String ident3 = lexema + " " + lasig + " " + lnume1 + " " + lcompa1 + " " + lnume2 + " " + llogi + " " + lnume3 + " " + lcompa2 + " " + lnume4;
-                            Simbolos sident3 = new Simbolos("Declaracion de variab 4", "Ninguno", ident3, token.getFila(), token.getColumna());
+                            Simbolos sident3 = new Simbolos("Expresiones", "Ninguno", ident3, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident3);
                             indiceToken += 8;
                         }
@@ -219,7 +219,7 @@ public class analizador_sintactico {
 
                             if (elementosValidos) {
                                 // Si se cumple el patrón, lo etiquetamos como "Decla Arreglo 2"
-                                Simbolos arre = new Simbolos("Decla Arreglo 2", "Ninguno", larre, token.getFila(), token.getColumna());
+                                Simbolos arre = new Simbolos("Expresiones", "Ninguno", larre, token.getFila(), token.getColumna());
                                 listaSimbolos.add(arre);
                                 indiceToken = currentIndex; // Actualizamos el índice del token
                             }
@@ -466,7 +466,7 @@ public class analizador_sintactico {
 
                             String todo3 = lexema + " " + lope + " " + lasig + " " + lnum;
 
-                            Simbolos siden3 = new Simbolos("Declaracion de variables", "Ninguno", todo3, token.getFila(), token.getColumna());
+                            Simbolos siden3 = new Simbolos("Expresiones", "Ninguno", todo3, token.getFila(), token.getColumna());
                             listaSimbolos.add(siden3);
                             indiceToken += 3;
                         }
@@ -517,7 +517,7 @@ public class analizador_sintactico {
                                 || lpcli.equals("[]")
                                 || lpcli.equals("{}"))) {
                             String ident1 = lexema + " " + lasig + " " + lpcli;
-                            Simbolos sident1 = new Simbolos("Declaracion de variab 3", "Ninguno", ident1, token.getFila(), token.getColumna());
+                            Simbolos sident1 = new Simbolos("Expresiones", "Ninguno", ident1, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident1);
                             indiceToken += 2;
                         }
