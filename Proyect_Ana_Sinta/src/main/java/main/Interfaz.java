@@ -22,6 +22,7 @@ public class Interfaz extends javax.swing.JFrame {
     GestionArchivos gestion = new GestionArchivos();
     ArrayList<Token> lista_token = new ArrayList<>();
     ArrayList<Simbolos> lista_simbolos = new ArrayList<>();
+    ArrayList<Bloques> lista_bloques = new ArrayList<>();
     ColorTable cote = new ColorTable();
     java.awt.Color black = java.awt.Color.black;
 
@@ -31,6 +32,7 @@ public class Interfaz extends javax.swing.JFrame {
     public Interfaz() {
         initComponents();
         setFontSize(15);
+        Tabla_Bloque.getColumnModel().getColumn(1).setCellRenderer(new MultiLineTableCellRenderer());
     }
 
     private void setFontSize(int size) {
@@ -62,6 +64,10 @@ public class Interfaz extends javax.swing.JFrame {
         BT_anasintactico = new javax.swing.JButton();
         BT_analizar = new javax.swing.JButton();
         BT_abrir = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla_Bloque = new javax.swing.JTable();
+        BT_Crear = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,11 +90,17 @@ public class Interfaz extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Bloque", "lexema", "Error", "Linea", "columna"
+                "Tipo", "Simbolos", "Error", "Linea", "columna"
             }
         ));
         jScrollPane4.setViewportView(table_sinta);
         if (table_sinta.getColumnModel().getColumnCount() > 0) {
+            table_sinta.getColumnModel().getColumn(0).setMinWidth(120);
+            table_sinta.getColumnModel().getColumn(0).setPreferredWidth(120);
+            table_sinta.getColumnModel().getColumn(0).setMaxWidth(120);
+            table_sinta.getColumnModel().getColumn(2).setMinWidth(180);
+            table_sinta.getColumnModel().getColumn(2).setPreferredWidth(180);
+            table_sinta.getColumnModel().getColumn(2).setMaxWidth(180);
             table_sinta.getColumnModel().getColumn(3).setMinWidth(70);
             table_sinta.getColumnModel().getColumn(3).setPreferredWidth(70);
             table_sinta.getColumnModel().getColumn(3).setMaxWidth(70);
@@ -148,44 +160,89 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        Tabla_Bloque.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Tipo", "Bloque", "Error", "Linea", "Columna"
+            }
+        ));
+        Tabla_Bloque.setRowHeight(120);
+        jScrollPane3.setViewportView(Tabla_Bloque);
+        if (Tabla_Bloque.getColumnModel().getColumnCount() > 0) {
+            Tabla_Bloque.getColumnModel().getColumn(0).setMinWidth(150);
+            Tabla_Bloque.getColumnModel().getColumn(0).setPreferredWidth(150);
+            Tabla_Bloque.getColumnModel().getColumn(0).setMaxWidth(150);
+            Tabla_Bloque.getColumnModel().getColumn(3).setMinWidth(70);
+            Tabla_Bloque.getColumnModel().getColumn(3).setPreferredWidth(70);
+            Tabla_Bloque.getColumnModel().getColumn(3).setMaxWidth(70);
+            Tabla_Bloque.getColumnModel().getColumn(4).setMinWidth(70);
+            Tabla_Bloque.getColumnModel().getColumn(4).setPreferredWidth(70);
+            Tabla_Bloque.getColumnModel().getColumn(4).setMaxWidth(70);
+        }
+
+        BT_Crear.setText("Crear");
+        BT_Crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_CrearActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("BLOQUES");
+
         javax.swing.GroupLayout JFondoLayout = new javax.swing.GroupLayout(JFondo);
         JFondo.setLayout(JFondoLayout);
         JFondoLayout.setHorizontalGroup(
             JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JFondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(501, 501, 501))
             .addGroup(JFondoLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(JFondoLayout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(323, 323, 323))
+                    .addGroup(JFondoLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(BT_abrir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BTlimpiar)
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JFondoLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JFondoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(BT_anasintactico)
-                        .addContainerGap())
+                        .addGap(121, 121, 121)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(JFondoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JFondoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(JFondoLayout.createSequentialGroup()
-                                        .addComponent(BT_abrir)
-                                        .addGap(49, 49, 49)
-                                        .addComponent(BT_analizar)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(BTlimpiar))
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(322, 322, 322))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JFondoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(32, Short.MAX_VALUE))))))
+                            .addComponent(BT_analizar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BT_anasintactico, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(27, 27, 27))))
             .addGroup(JFondoLayout.createSequentialGroup()
                 .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JFondoLayout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JFondoLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 919, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(BT_Crear)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         JFondoLayout.setVerticalGroup(
@@ -195,37 +252,53 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(JFondoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BT_abrir)
-                            .addComponent(BT_analizar)
-                            .addComponent(BTlimpiar)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JFondoLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(BT_anasintactico))
-                    .addGroup(JFondoLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(JFondoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(BTlimpiar)
+                                    .addComponent(BT_abrir))
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JFondoLayout.createSequentialGroup()
+                                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(JFondoLayout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(BT_analizar)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGroup(JFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(JFondoLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(JFondoLayout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(BT_anasintactico)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JFondoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BT_Crear)
+                        .addGap(167, 167, 167))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JFondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,16 +349,21 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultTableModel model2 = (DefaultTableModel) table_sinta.getModel();
         model2.setRowCount(0);
         lista_simbolos.clear();
+        DefaultTableModel model3 = (DefaultTableModel) Tabla_Bloque.getModel();
+        model3.setRowCount(0);
+        lista_bloques.clear();
     }//GEN-LAST:event_BTlimpiarActionPerformed
 
     private void BT_anasintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_anasintacticoActionPerformed
         // TODO add your handling code here:
         analizador_sintactico anasinta = new analizador_sintactico(lista_token);
         anasinta.analizar();
+        lista_simbolos.clear();
         DefaultTableModel model2 = (DefaultTableModel) table_sinta.getModel();
         model2.setRowCount(0); // Limpia la tabla
 
         for (Simbolos sim : anasinta.getListaSimbolos()) {
+            lista_simbolos.add(sim);
             model2.addRow(new Object[]{
                 sim.getRespuesta(),
                 sim.getLexemas(),
@@ -295,6 +373,29 @@ public class Interfaz extends javax.swing.JFrame {
             });
         }
     }//GEN-LAST:event_BT_anasintacticoActionPerformed
+
+    private void BT_CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CrearActionPerformed
+        // TODO add your handling code here:
+        // Verifica que el análisis sintáctico se haya realizado previamente
+        if (lista_simbolos != null && !lista_simbolos.isEmpty()) {
+            Bucles bucle = new Bucles(lista_simbolos);
+            bucle.crear();
+            DefaultTableModel model3 = (DefaultTableModel) Tabla_Bloque.getModel();
+            model3.setRowCount(0);
+
+            for (Bloques bloq : bucle.getCajaBloque()) {
+                model3.addRow(new Object[]{
+                    bloq.getBtipo(),
+                    bloq.getBloque(),
+                    bloq.getBerror(),
+                    bloq.getBfila(),
+                    bloq.getBcolumna()
+                });
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero realiza el análisis sintáctico antes de crear los bloques.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BT_CrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,17 +433,21 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BT_Crear;
     private javax.swing.JButton BT_abrir;
     private javax.swing.JButton BT_analizar;
     private javax.swing.JButton BT_anasintactico;
     private javax.swing.JButton BTlimpiar;
     private javax.swing.JPanel JFondo;
     private javax.swing.JTable TablaToken;
+    private javax.swing.JTable Tabla_Bloque;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable table_sinta;
     private javax.swing.JTextPane text_editor;

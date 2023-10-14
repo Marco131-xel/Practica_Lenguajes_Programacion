@@ -14,7 +14,6 @@ public class analizador_sintactico {
         this.listaSimbolos = new ArrayList<>();
         this.listaTokens = listaTokens;
         this.indiceToken = 0;
-//        this.cajaBloque = new ArrayList<>();
     }
 
     public ArrayList<Simbolos> getListaSimbolos() {
@@ -78,7 +77,7 @@ public class analizador_sintactico {
                                 && (tpacla2.equals("Palabra clave"))
                                 && (tcomil2.equals("Constantes comillas D") || tcomil2.equals("Constantes comillas S"))) {
                             String ident8 = lexema + " " + lasig + " " + lcomil + " " + lpacla + " " + lnume1 + " " + lcompa + " " + lnume2 + " " + lpacla2 + " " + lcomil2;
-                            Simbolos sident8 = new Simbolos("Declaracion de variab 4", "Ninguno", ident8, token.getFila(), token.getColumna());
+                            Simbolos sident8 = new Simbolos("Expresiones", "Ninguno", ident8, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident8);
                             indiceToken += 8;
                         }
@@ -161,7 +160,7 @@ public class analizador_sintactico {
                                 && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))
                                 && (tpclf.equals("Otros") && lpclf.equals(")"))) {
                             String ident9 = lexema + " " + lasig + " " + lident + " " + lpcli + " " + lnume1 + " " + lcomas + " " + lnume2 + " " + lpclf;
-                            Simbolos sident9 = new Simbolos("Declaracion de variab 3", "Ninguno", ident9, token.getFila(), token.getColumna());
+                            Simbolos sident9 = new Simbolos("Expresiones", "Ninguno", ident9, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident9);
                             indiceToken += 7;
                         }
@@ -255,7 +254,7 @@ public class analizador_sintactico {
                                 && (tcomil2.equals("Constantes comillas D") || tcomil2.equals("Constantes comillas S"))
                                 && (tpclf.equals("Otros") && (lpclf.equals(")")) || lpclf.equals("]") || lpclf.equals("}"))) {
                             String ident2 = lexema + " " + lasig + " " + lpcli + " " + lcomil + " " + ldpunto + " " + lcomil2 + " " + lpclf;
-                            Simbolos sident2 = new Simbolos("Declaracion de variab 3", "Ninguno", ident2, token.getFila(), token.getColumna());
+                            Simbolos sident2 = new Simbolos("Expresiones", "Ninguno", ident2, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident2);
                             indiceToken += 6;
                         }
@@ -287,7 +286,7 @@ public class analizador_sintactico {
                                 && tparf2.equals("Otros") && lparf2.equals(")")) {
                             // Si se cumple el patrón, lo etiquetamos operadores de entrada y salida
                             String o2 = lexema + " " + lpari2 + " " + lcomi2 + " " + lcopo2 + " " + lcomci2 + " " + lparf2;
-                            Simbolos oes = new Simbolos("Decla ope", "Ninguno", o2, token.getFila(), token.getColumna());
+                            Simbolos oes = new Simbolos("Expresiones", "Ninguno", o2, token.getFila(), token.getColumna());
                             listaSimbolos.add(oes);
                             indiceToken += 5; // Avanzamos el índice en función de la expresión completa
                         }
@@ -317,7 +316,7 @@ public class analizador_sintactico {
                                 && (tlogi.equals("Logicos"))
                                 && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))) {
                             String ident5 = lexema + " " + lasig + " " + lnume1 + " " + lpacla + " " + llogi + " " + lnume2;
-                            Simbolos sident5 = new Simbolos("Declaracion de variab 3", "Ninguno", ident5, token.getFila(), token.getColumna());
+                            Simbolos sident5 = new Simbolos("Expresiones", "Ninguno", ident5, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident5);
                             indiceToken += 5;
                         }
@@ -344,7 +343,7 @@ public class analizador_sintactico {
                                 && (tpacla.equals("Palabra clave") && lpacla.equals("is"))
                                 && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))) {
                             String ident4 = lexema + " " + lasig + " " + lnume1 + " " + lpacla + " " + lnume2;
-                            Simbolos sident4 = new Simbolos("Declaracion de variab 3", "Ninguno", ident4, token.getFila(), token.getColumna());
+                            Simbolos sident4 = new Simbolos("Expresiones", "Ninguno", ident4, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident4);
                             indiceToken += 4;
                         }
@@ -383,7 +382,7 @@ public class analizador_sintactico {
                                 && (tnume2.equals("Constante Entero") || tnume2.equals("Identificador"))
                                 && (tpclf.equals("Otros") && lpclf.equals("))"))) {
                             String ident7 = lexema + " " + lpcli + " " + lident + " " + lpcli2 + " " + lnume1 + " " + lcomas + " " + lnume2 + " " + lpclf;
-                            Simbolos sident7 = new Simbolos("Declaracion de variab 3", "Ninguno", ident7, token.getFila(), token.getColumna());
+                            Simbolos sident7 = new Simbolos("Expresiones", "Ninguno", ident7, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident7);
                             indiceToken += 7;
                         }
@@ -415,7 +414,7 @@ public class analizador_sintactico {
                                 && (tnume1.equals("Constante Entero") || tnume1.equals("Identificador"))
                                 && (tpclf.equals("Otros") && lpclf.equals("))"))) {
                             String ident6 = lexema + " " + lpcli + " " + lident + " " + lpcli2 + " " + lnume1 + " " + lpclf;
-                            Simbolos sident6 = new Simbolos("Declaracion de variab 3", "Ninguno", ident6, token.getFila(), token.getColumna());
+                            Simbolos sident6 = new Simbolos("Expresiones", "Ninguno", ident6, token.getFila(), token.getColumna());
                             listaSimbolos.add(sident6);
                             indiceToken += 5;
                         }
@@ -436,12 +435,13 @@ public class analizador_sintactico {
                         String lparf = parf.getLexema();
 
                         if ((tpari.equals("Otros") && lpari.equals("("))
-                                && (tcomi.equals("Constantes comillas D") || tcomi.equals("Constantes comillas S"))
+                                && (tcomi.equals("Constantes comillas D") || tcomi.equals("Constantes comillas S")
+                                || tcomi.equals("Identificador") || tcomi.equals("Constante Entero"))
                                 && (tparf.equals("Otros") && lparf.equals(")"))) {
 
                             String todo4 = lexema + " " + lpari + " " + lcomi + " " + lparf;
 
-                            Simbolos siden4 = new Simbolos("Decla Bucles", "Ninguno", todo4, token.getFila(), token.getColumna());
+                            Simbolos siden4 = new Simbolos("Expresiones", "Ninguno", todo4, token.getFila(), token.getColumna());
                             listaSimbolos.add(siden4);
                             indiceToken += 3;
                         }
@@ -495,7 +495,7 @@ public class analizador_sintactico {
 
                             String todo2 = lexema + " " + leden1 + " " + leden2 + " " + leden3 + " " + leden4;
 
-                            Simbolos siden2 = new Simbolos("Declaracion de variables", "Ninguno", todo2, token.getFila(), token.getColumna());
+                            Simbolos siden2 = new Simbolos("Expresiones", "Ninguno", todo2, token.getFila(), token.getColumna());
                             listaSimbolos.add(siden2);
                             indiceToken += 4;
                         }
@@ -540,7 +540,7 @@ public class analizador_sintactico {
 
                             String todo = lexema + " " + liden + " " + liden2;
 
-                            Simbolos siden = new Simbolos("Declaracion de variables", "Ninguno", todo, token.getFila(), token.getColumna());
+                            Simbolos siden = new Simbolos("Expresiones", "Ninguno", todo, token.getFila(), token.getColumna());
                             listaSimbolos.add(siden);
                             indiceToken += 2;
 
@@ -604,7 +604,7 @@ public class analizador_sintactico {
                                 && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
                             String lfor3 = lexema + " " + lident + " " + lpacla + " " + lident2 + " "
                                     + lpcli + " " + lnume + " " + lcomas + " " + lnume2 + " " + lpclf + " " + ldpunto;
-                            Simbolos sfor3 = new Simbolos("Ciclo for", "Ninguno", lfor3, token.getFila(), token.getColumna());
+                            Simbolos sfor3 = new Simbolos("for", "Ninguno", lfor3, token.getFila(), token.getColumna());
                             listaSimbolos.add(sfor3);
                             indiceToken += 9;
                         }
@@ -644,7 +644,7 @@ public class analizador_sintactico {
                                 && (tpclf.equals("Otros") && lpclf.equals(")"))
                                 && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
                             String lfor2 = lexema + " " + lident + " " + lpacla + " " + lident2 + " " + lpcli + " " + lnume + " " + lpclf + " " + ldpunto;
-                            Simbolos sfor2 = new Simbolos("Ciclo for", "Ninguno", lfor2, token.getFila(), token.getColumna());
+                            Simbolos sfor2 = new Simbolos("for", "Ninguno", lfor2, token.getFila(), token.getColumna());
                             listaSimbolos.add(sfor2);
                             indiceToken += 7;
                         }
@@ -672,7 +672,7 @@ public class analizador_sintactico {
                                 && (tident2.equals("Identificador"))
                                 && (tdpunto.equals("Otros") && ldpunto.equals(":"))) {
                             String lfor = lexema + " " + lident + " " + lpacla + " " + lident2 + " " + ldpunto;
-                            Simbolos sfor = new Simbolos("Ciclo for", "Ninguno", lfor, token.getFila(), token.getColumna());
+                            Simbolos sfor = new Simbolos("for", "Ninguno", lfor, token.getFila(), token.getColumna());
                             listaSimbolos.add(sfor);
                             indiceToken += 4;
                         }
@@ -701,7 +701,7 @@ public class analizador_sintactico {
                                 && tipodoblepuntotoken.equals("Otros") && lexemadoblepuntotoken.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Expresiones Condicionales"
                             String expresionCond = lexema + " " + lexemaConstEntero + " " + lexemaOperador + " " + lexemaConstEntero2 + lexemadoblepuntotoken;
-                            Simbolos expresionCondSimbolo = new Simbolos("Condicionales", "Ninguno", expresionCond, token.getFila(), token.getColumna());
+                            Simbolos expresionCondSimbolo = new Simbolos("if", "Ninguno", expresionCond, token.getFila(), token.getColumna());
                             listaSimbolos.add(expresionCondSimbolo);
                             indiceToken += 4; // Avanzamos el índice en función de la expresión completa
                         }
@@ -729,7 +729,7 @@ public class analizador_sintactico {
                                 && tdopuntoken.equals("Otros") && ldopuntoken.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Expresiones Condicionales"
                             String telif = lexema + " " + lconetoken + " " + lopetoken + " " + lconetoken2 + ldopuntoken;
-                            Simbolos conelif = new Simbolos("Condicionales", "Ninguno", telif, token.getFila(), token.getColumna());
+                            Simbolos conelif = new Simbolos("elif", "Ninguno", telif, token.getFila(), token.getColumna());
                             listaSimbolos.add(conelif);
                             indiceToken += 4; // Avanzamos el índice en función de la expresión completa
                         }
@@ -745,14 +745,14 @@ public class analizador_sintactico {
                         if (teldpunto.equals("Otros") && leldpunto.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Expresiones Condicionales" else
                             String lelse = lexema + " " + leldpunto;
-                            Simbolos elpunto = new Simbolos("Condicionales", "Ninguno", lelse, token.getFila(), token.getColumna());
+                            Simbolos elpunto = new Simbolos("else", "Ninguno", lelse, token.getFila(), token.getColumna());
                             listaSimbolos.add(elpunto);
                             indiceToken += 1; // Avanzamos el índice en función de la expresión completa
                         }
                     }
 
                     // Ciclos while True:
-                    if ((lexema.equals("while") || lexema.equals("if")) && indiceToken + 2 < listaTokens.size()) {
+                    if (lexema.equals("while") && indiceToken + 2 < listaTokens.size()) {
                         Token palabraClaveToken = listaTokens.get(indiceToken + 1);
                         Token dpuntoToken = listaTokens.get(indiceToken + 2);
 
@@ -765,7 +765,7 @@ public class analizador_sintactico {
                                 && tipoDpunto.equals("Otros") && lexemaDpunto.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Ciclos"
                             String ciwhile = lexema + " " + lexemaPalabraClave + " " + lexemaDpunto;
-                            Simbolos ciclowhile = new Simbolos("Ciclos", "Ninguno", ciwhile, token.getFila(), token.getColumna());
+                            Simbolos ciclowhile = new Simbolos("while", "Ninguno", ciwhile, token.getFila(), token.getColumna());
                             listaSimbolos.add(ciclowhile);
                             indiceToken += 2; // Avanzamos el índice en función de la expresión completa
                         }
@@ -792,7 +792,7 @@ public class analizador_sintactico {
                                 && twdpu.equals("Otros") && lwdpu.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Bucles"
                             String b2 = lexema + " " + lnum1 + " " + lcope + " " + lnum2 + " " + lwdpu;
-                            Simbolos blu = new Simbolos("Ciclos", "Ninguno", b2, token.getFila(), token.getColumna());
+                            Simbolos blu = new Simbolos("while", "Ninguno", b2, token.getFila(), token.getColumna());
                             listaSimbolos.add(blu);
                             indiceToken += 4; // Avanzamos el índice en función de la expresión completa
                         }
@@ -808,13 +808,38 @@ public class analizador_sintactico {
                         String tidepunto = idedpunto.getTipo();
                         String lidepunto = idedpunto.getLexema();
 
-                        if (tidenti.equals("Identificador")
+                        if ((tidenti.equals("Identificador")
+                                || tidenti.equals("Palabra clave") && lidenti.equals("True"))
                                 && tidepunto.equals("Otros") && lidepunto.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como bucles
                             String ci1 = lexema + " " + lidenti + " " + lidepunto;
-                            Simbolos b1 = new Simbolos("Condicionales", "Ninguno", ci1, token.getFila(), token.getColumna());
+                            Simbolos b1 = new Simbolos("if", "Ninguno", ci1, token.getFila(), token.getColumna());
                             listaSimbolos.add(b1);
                             indiceToken += 2; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // Condicionales if not lista_vacia:
+                    if (lexema.equals("if") && indiceToken + 3 < listaTokens.size()) {
+                        Token logi = listaTokens.get(indiceToken + 1);
+                        Token identi = listaTokens.get(indiceToken + 2);
+                        Token idedpunto = listaTokens.get(indiceToken + 3);
+
+                        String tlogi = logi.getTipo();
+                        String llogi = logi.getLexema();
+                        String tidenti = identi.getTipo();
+                        String lidenti = identi.getLexema();
+                        String tidepunto = idedpunto.getTipo();
+                        String lidepunto = idedpunto.getLexema();
+
+                        if ((tlogi.equals("Logicos") && llogi.equals("not"))
+                                && tidenti.equals("Identificador")
+                                && tidepunto.equals("Otros") && lidepunto.equals(":")) {
+                            // Si se cumple el patrón, lo etiquetamos como bucles
+                            String lif5 = lexema + " " + llogi + " " + lidenti + " " + lidepunto;
+                            Simbolos sif5 = new Simbolos("if", "Ninguno", lif5, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sif5);
+                            indiceToken += 3; // Avanzamos el índice en función de la expresión completa
                         }
                     }
                     // Funciones def sigue(3,9):
@@ -851,7 +876,7 @@ public class analizador_sintactico {
                                 && (tdpunto5.equals("Otros") && ldpunto5.equals(":"))) {
                             // Si se cumple el patrón, lo etiquetamos funciones 
                             String ldef5 = lexema + " " + liden5 + " " + lpari5 + " " + lcont5 + " " + lcoma5 + " " + lconte5 + " " + lparf5 + " " + ldpunto5;
-                            Simbolos def5 = new Simbolos("Funciones 2", "Ninguno", ldef5, token.getFila(), token.getColumna());
+                            Simbolos def5 = new Simbolos("def", "Ninguno", ldef5, token.getFila(), token.getColumna());
                             listaSimbolos.add(def5);
                             indiceToken += 7; // Avanzamos el índice en función de la expresión completa
                         }
@@ -882,8 +907,129 @@ public class analizador_sintactico {
                                 && tdpunto4.equals("Otros") && ldpunto4.equals(":")) {
                             // Si se cumple el patrón, lo etiquetamos como "Funciones"
                             String def1 = lexema + " " + liden4 + " " + lpari4 + " " + lcontex + " " + lparf4 + " " + ldpunto4;
-                            Simbolos de1 = new Simbolos("Funciones", "Ninguno", def1, token.getFila(), token.getColumna());
+                            Simbolos de1 = new Simbolos("def", "Ninguno", def1, token.getFila(), token.getColumna());
                             listaSimbolos.add(de1);
+                            indiceToken += 5; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // Funciones def mi_funcion():
+                    if (lexema.equals("def") && indiceToken + 3 < listaTokens.size()) {
+                        Token iden4 = listaTokens.get(indiceToken + 1);
+                        Token pari4 = listaTokens.get(indiceToken + 2);
+                        Token parf4 = listaTokens.get(indiceToken + 3);
+
+                        String tiden4 = iden4.getTipo();
+                        String liden4 = iden4.getLexema();
+                        String tpari4 = pari4.getTipo();
+                        String lpari4 = pari4.getLexema();
+                        String tparf4 = parf4.getTipo();
+                        String lparf4 = parf4.getLexema();
+
+                        if ((tiden4.equals("Identificador"))
+                                && (tpari4.equals("Otros") && lpari4.equals("()"))
+                                && tparf4.equals("Otros") && lparf4.equals(":")) {
+                            // Si se cumple el patrón, lo etiquetamos como "Funciones"
+                            String ldef0 = lexema + " " + liden4 + " " + lpari4 + " " + lparf4;
+                            Simbolos sdef0 = new Simbolos("def", "Ninguno", ldef0, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sdef0);
+                            indiceToken += 3; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // Return return fibonacci(n - 1) + fibonacci(n - 2) 
+                    if (lexema.equals("return") && indiceToken + 13 < listaTokens.size()) {
+                        Token iden5 = listaTokens.get(indiceToken + 1);
+                        Token pari5 = listaTokens.get(indiceToken + 2);
+                        Token cont5 = listaTokens.get(indiceToken + 3);
+                        Token coma5 = listaTokens.get(indiceToken + 4);
+                        Token conte5 = listaTokens.get(indiceToken + 5);
+                        Token parf5 = listaTokens.get(indiceToken + 6);
+                        Token opera = listaTokens.get(indiceToken + 7);//mitad
+                        Token iden6 = listaTokens.get(indiceToken + 8);
+                        Token pari6 = listaTokens.get(indiceToken + 9);
+                        Token cont6 = listaTokens.get(indiceToken + 10);
+                        Token coma6 = listaTokens.get(indiceToken + 11);
+                        Token conte6 = listaTokens.get(indiceToken + 12);
+                        Token parf6 = listaTokens.get(indiceToken + 13);
+
+                        String tiden5 = iden5.getTipo();
+                        String liden5 = iden5.getLexema();
+                        String tpari5 = pari5.getTipo();
+                        String lpari5 = pari5.getLexema();
+                        String tcont5 = cont5.getTipo();
+                        String lcont5 = cont5.getLexema();
+                        String tcoma5 = coma5.getTipo();
+                        String lcoma5 = coma5.getLexema();
+                        String tconte5 = conte5.getTipo();
+                        String lconte5 = conte5.getLexema();
+                        String tparf5 = parf5.getTipo();
+                        String lparf5 = parf5.getLexema(); //segunda parte   
+                        String topera = opera.getTipo();
+                        String lopera = opera.getLexema();
+                        String tiden6 = iden6.getTipo(); // segunda parte
+                        String liden6 = iden6.getLexema();
+                        String tpari6 = pari6.getTipo();
+                        String lpari6 = pari6.getLexema();
+                        String tcont6 = cont6.getTipo();
+                        String lcont6 = cont6.getLexema();
+                        String tcoma6 = coma6.getTipo();
+                        String lcoma6 = coma6.getLexema();
+                        String tconte6 = conte6.getTipo();
+                        String lconte6 = conte6.getLexema();
+                        String tparf6 = parf6.getTipo();
+                        String lparf6 = parf6.getLexema();
+
+                        if (tiden5.equals("Identificador")
+                                && (tpari5.equals("Otros") && lpari5.equals("("))
+                                && (tcont5.equals("Constante Entero") || tcont5.equals("Identificador"))
+                                && (tcoma5.equals("Otros") && lcoma5.equals(",") || tcoma5.equals("Operadores Aritmeticos") || tcoma5.equals("Comparacion"))
+                                && (tconte5.equals("Constante Entero") || tconte5.equals("Identificador"))
+                                && (tparf5.equals("Otros") && lparf5.equals(")"))
+                                && (topera.equals("Operadores Aritmeticos") || topera.equals("Comparacion"))
+                                && tiden6.equals("Identificador") // mitad
+                                && (tpari6.equals("Otros") && lpari6.equals("("))
+                                && (tcont6.equals("Constante Entero") || tcont6.equals("Identificador"))
+                                && (tcoma6.equals("Otros") && lcoma6.equals(",") || tcoma6.equals("Operadores Aritmeticos") || tcoma6.equals("Comparacion"))
+                                && (tconte6.equals("Constante Entero") || tconte6.equals("Identificador"))
+                                && (tparf6.equals("Otros") && lparf6.equals(")"))) {
+                            // Si se cumple el patrón, lo etiquetamos return
+                            String lretu5 = lexema + " " + liden5 + " " + lpari5 + " " + lcont5 + " " + lcoma5 + " " + lconte5 + " " + lparf5 + " " + lopera
+                                    + " " + liden6 + " " + lpari6 + " " + lcont6 + " " + lcoma6 + " " + lconte6 + " " + lparf6;
+                            Simbolos sretu5 = new Simbolos("return", "Ninguno", lretu5, token.getFila(), token.getColumna());
+                            listaSimbolos.add(sretu5);
+                            indiceToken += 13; // Avanzamos el índice en función de la expresión completa
+                        }
+                    }
+
+                    // Return return numero % 2 == 0  
+                    if (lexema.equals("return") && indiceToken + 5 < listaTokens.size()) {
+                        Token cont6 = listaTokens.get(indiceToken + 1);
+                        Token op6 = listaTokens.get(indiceToken + 2);
+                        Token conte6 = listaTokens.get(indiceToken + 3);
+                        Token compa = listaTokens.get(indiceToken + 4);
+                        Token nume = listaTokens.get(indiceToken + 5);
+
+                        String tcont6 = cont6.getTipo();
+                        String lcont6 = cont6.getLexema();
+                        String top6 = op6.getTipo();
+                        String lop6 = op6.getLexema();
+                        String tconte6 = conte6.getTipo();
+                        String lconte6 = conte6.getLexema();
+                        String tcompa = compa.getTipo();
+                        String lcompa = compa.getLexema();
+                        String tnume = nume.getTipo();
+                        String lnume = nume.getLexema();
+
+                        if ((tcont6.equals("Constante Entero") || tcont6.equals("Identificador"))
+                                && top6.equals("Operadores Aritmeticos")
+                                && (tconte6.equals("Constante Entero") || tconte6.equals("Identificador"))
+                                && (tcompa.equals("Comparacion"))
+                                && (tnume.equals("Constante Entero") || tnume.equals("Identificador"))) {
+                            // Si se cumple el patrón, lo etiquetamos return
+                            String lretu4 = lexema + " " + lcont6 + " " + lop6 + " " + lconte6 + " " + lcompa + " " + lnume;
+                            Simbolos retu4 = new Simbolos("return", "Ninguno", lretu4, token.getFila(), token.getColumna());
+                            listaSimbolos.add(retu4);
                             indiceToken += 5; // Avanzamos el índice en función de la expresión completa
                         }
                     }
@@ -910,7 +1056,7 @@ public class analizador_sintactico {
                                 && (tparf8.equals("Otros") && lparf8.equals(")"))) {
                             // Si se cumple el patrón, lo etiquetamos funciones con identificadores 
                             String lretu3 = lexema + " " + liden8 + " " + lpari8 + " " + lident8 + " " + lparf8;
-                            Simbolos retu3 = new Simbolos("Return 3", "Ninguno", lretu3, token.getFila(), token.getColumna());
+                            Simbolos retu3 = new Simbolos("return", "Ninguno", lretu3, token.getFila(), token.getColumna());
                             listaSimbolos.add(retu3);
                             indiceToken += 4; // Avanzamos el índice en función de la expresión completa
                         }
@@ -935,7 +1081,7 @@ public class analizador_sintactico {
 
                             // Si se cumple el patrón, lo etiquetamos funciones operadas
                             String lretu2 = lexema + " " + lcont6 + " " + lop6 + " " + lconte6;
-                            Simbolos retu2 = new Simbolos("Return 2", "Ninguno", lretu2, token.getFila(), token.getColumna());
+                            Simbolos retu2 = new Simbolos("return", "Ninguno", lretu2, token.getFila(), token.getColumna());
                             listaSimbolos.add(retu2);
                             indiceToken += 3; // Avanzamos el índice en función de la expresión completa
                         }
@@ -955,7 +1101,7 @@ public class analizador_sintactico {
                                 || (tvalor.equals("Constantes comillas S"))) {
                             // Si se cumple el patrón, lo etiquetamos return
                             String lreturn = lexema + " " + lvalor;
-                            Simbolos retu = new Simbolos("Return", "Ninguno", lreturn, token.getFila(), token.getColumna());
+                            Simbolos retu = new Simbolos("return", "Ninguno", lreturn, token.getFila(), token.getColumna());
                             listaSimbolos.add(retu);
                             indiceToken += 1; // Avanzamos el índice en función de la expresión completa
                         }
